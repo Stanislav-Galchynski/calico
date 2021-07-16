@@ -504,6 +504,11 @@ input.gsc-input, .gsc-input-box, .gsc-input-box-hover, .gsc-input-box-focus, .gs
   color: white;
 }
 
+#enterprise-header {
+  display: flex;
+  align-items: center;
+}
+
 #enterprise-header .request-demo-button {
   border: none;
   color: white;
@@ -519,7 +524,7 @@ input.gsc-input, .gsc-input-box, .gsc-input-box-hover, .gsc-input-box-focus, .gs
   font-weight: 700 !important;
 }
 
-#enterprise-header .calico-enterprise-img {
+#enterprise-header .calico-cloud-img {
   display: inline-block !important;
 }
 
