@@ -148,7 +148,51 @@ Name:   google.com
 Address: 2607:f8b0:400a:804::200e
 ```
 
+#### Verify that kubelet is running on the node with the correct flags
+
+```bash
+systemctl status kubelet
+```
+If there is a problem, check the journal
+
+```bash
+journalclt -u kubelet | head
+```
+
+#### Check the status of other system pods
+
+Look especially at coredns; if they are not getting an IP, something is wrong with the CNI
+
+```bash
+kubectl get pod -n kube-system -o wide
+```
+But if other pods fail, it is likely a different issue. Perform normal Kubernetes troubleshooting. For example:
+
+```
+kubectl describe pod kube-scheduler-ip-10-0-1-20.eu-west-1.compute.internal -n kube-system | tail -15
+``` 
+
 ### Calico components
+
+#### View cluster CNI, IPAM, and policy 
+
+```bash
+cat /etc/cni/net.d/10-calico.conflist
+```
+
+#### Verify calicoctl matches cluster
+
+The cluster version and type must match the calicoctl version.
+
+```bash
+calicoctl version
+```
+
+For syntax:
+
+```bash
+calicoctl version
+```
 
 #### Check tigera operator status
 
@@ -171,6 +215,9 @@ kubectl get tigerastatus
 NAME     AVAILABLE   PROGRESSING   DEGRADED   SINCE
 calico   True        False         False      27h
 ```
+
+#### Verify component availability
+
 
 #### View cluster information
 
@@ -209,7 +256,7 @@ items:
 #### View pod info of pod that is not running
 
 ```bash
-kubectl describe pods <Pod’s name>  -n <namespace> 
+kubectl describe pods `<Pod’s name>`  -n `<namespace> `
 
 kubectl describe pods busybox -n default
 
