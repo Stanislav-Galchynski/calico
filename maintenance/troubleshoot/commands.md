@@ -298,7 +298,7 @@ journalctl -u kubelet
 
 #### Verify routing table on the node
 
-Look for common issues like a port TCP XXX is not open between instances.
+Look for common issues like TCP port XXX is not open between instances.
 
 ```bash
 ip route
