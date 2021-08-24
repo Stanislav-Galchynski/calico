@@ -218,6 +218,15 @@ calico   True        False         False      27h
 
 #### Verify component availability
 
+```bash
+kubectl get pod -n tigera-operator
+```
+
+#### View calico nodes
+
+```bash
+kubectl get pod -n calico-system -o wide
+```
 
 #### View cluster information
 
@@ -273,7 +282,7 @@ Events:
   Normal  Started    18s   kubelet, ip-10-0-0-11  Started container busybox
 ```
 
-#### View logs of pod that is not running
+#### View logs of a pod that is not running
 
 ```bash
 kubectl logs `<pod_name>`  -n `<namespace>`
@@ -292,6 +301,8 @@ journalctl -u kubelet
 ### Routing
 
 #### Verify routing table on the node
+
+Look for common issues like a port TCP XXX is not open between instances.
 
 ```bash
 ip route
@@ -377,6 +388,14 @@ bird> show route
                    via 10.0.0.12 on eth0 [kernel1 18:13:36] (10)
 ```
 
+#### Capture traffic
+
+For example, 
+
+```bash
+sudo tcpdump -i calicofac0017c3 icmp
+```
+
 ### Network policy
 
 #### Verify existing Kubernetes network policies
@@ -436,4 +455,18 @@ default-app-policy    100
 egress-lockdown       600
 default-node-policy   100     has(kubernetes.io/hostname)
 nodeport-policy       100     has(kubernetes.io/hostname)
+```
+
+#### Check policy selectors and order
+
+For example,
+
+```bash
+calicoctl get np -n yaobank -o wide
+```
+
+If the selectors should match, check the endpoint IP, and the node where it is running. For example, 
+
+```bash
+kubectl get pod -l app=customer -n yaobank
 ```
