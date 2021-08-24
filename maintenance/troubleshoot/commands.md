@@ -6,7 +6,7 @@ canonical_url: '/maintenance/troubleshoot/commands'
 
 ### Big picture
 
-Use command line tools to troubleshoot the following resources:
+Use command line tools to get status and troubleshoot. 
 
 - [Hosts](#hosts)
 - [Kubernetes](#kubernetes)
