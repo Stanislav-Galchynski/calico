@@ -230,9 +230,10 @@ Events:
 
 ```bash
 kubectl logs <pod_name>  -n <namespace>
+```
 
+```bash
 kubectl logs busybox -n default
-
 ```
 
 #### View kernel logs
