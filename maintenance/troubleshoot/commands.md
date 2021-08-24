@@ -19,14 +19,13 @@ See [Calico architecture and components]({{site.baseurl}}/reference/architecture
 
 ### Hosts
 
-#### Verify the number of nodes in the cluster
+#### Verify number of nodes in a cluster
 
 ```bash
 kubectl get nodes
 ```
 
 ```
-ubuntu@master:~$ 
 
 NAME           STATUS   ROLES    AGE   VERSION
 ip-10-0-0-10   Ready    master   27h   v1.18.0
@@ -59,7 +58,6 @@ bash-5.0# ping 8.8.8.8
 PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
 64 bytes from 8.8.8.8: icmp_seq=1 ttl=97 time=6.61 ms
 64 bytes from 8.8.8.8: icmp_seq=2 ttl=97 time=6.64 ms
-
 ```
 
 #### Collect {{site.prodname}} diagnostic logs
@@ -119,7 +117,6 @@ kubectl get svc
 ```
 NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
 kubernetes   ClusterIP   10.49.0.1    <none>        443/TCP   2d2h
-ubuntu@master:~$
 ```
 
 ```bash
@@ -168,7 +165,7 @@ kubectl get pod -n kube-system -o wide
 ```
 But if other pods fail, it is likely a different issue. Perform normal Kubernetes troubleshooting. For example:
 
-```
+```bash
 kubectl describe pod kube-scheduler-ip-10-0-1-20.eu-west-1.compute.internal -n kube-system | tail -15
 ``` 
 
@@ -191,7 +188,7 @@ calicoctl version
 For syntax:
 
 ```bash
-calicoctl version
+calicoctl version -help
 ```
 
 #### Check tigera operator status
@@ -260,15 +257,14 @@ items:
       type: Calico
 ```
 
-### Logs and diagnostics
-
 #### View pod info of pod that is not running
 
 ```bash
-kubectl describe pods `<Pod’s name>`  -n `<namespace> `
+kubectl describe pods `<pod_name>`  -n `<namespace> `
+```
 
+```bash
 kubectl describe pods busybox -n default
-
 ```
 
 ```
@@ -465,7 +461,7 @@ For example,
 calicoctl get np -n yaobank -o wide
 ```
 
-If the selectors should match, check the endpoint IP, and the node where it is running. For example, 
+If the selectors should match, check the endpoint IP and the node where it is running. For example, 
 
 ```bash
 kubectl get pod -l app=customer -n yaobank
