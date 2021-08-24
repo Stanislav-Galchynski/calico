@@ -229,7 +229,7 @@ Events:
 #### View logs of pod that is not running
 
 ```bash
-kubectl logs <pod_name>  -n <namespace>
+kubectl logs pod_name  -n namespace
 ```
 
 ```bash
