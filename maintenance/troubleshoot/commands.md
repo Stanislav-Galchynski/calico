@@ -113,7 +113,7 @@ kubernetes   ClusterIP   10.49.0.1    <none>        443/TCP   2d2h
 
 #### Verify Kubernetes kube-dns is working
 
-```
+```bash
 kubectl get svc
 ```
 ```
@@ -122,7 +122,7 @@ kubernetes   ClusterIP   10.49.0.1    <none>        443/TCP   2d2h
 ubuntu@master:~$
 ```
 
-```
+```bash
 kubectl exec -it multitool  bash
 ```
 ```
@@ -178,7 +178,7 @@ calico   True        False         False      27h
 kubectl get installation -o yaml
 ```
 
-```
+```yaml
 apiVersion: v1
 items:
 - apiVersion: operator.tigera.io/v1
@@ -229,7 +229,7 @@ Events:
 #### View logs of pod that is not running
 
 ```bash
-kubectl logs pod_name  -n namespace
+kubectl logs `<pod_name>`  -n `<namespace>`
 ```
 
 ```bash
@@ -283,7 +283,7 @@ IPv4 BGP status
 kubectl get ippools default-ipv4-ippool -o yaml
 ```
 
-```
+```yaml
 ...
 spec:
   ipipMode: Always
